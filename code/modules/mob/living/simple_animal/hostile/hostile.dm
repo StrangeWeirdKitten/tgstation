@@ -250,7 +250,7 @@
 		stack_trace("Invalid target in CanAttack(): [the_target]")
 		return FALSE
 
-	if(isturf(the_target) || QDELETED(the_target) || QDELETED(src)) // bail out on invalids
+	if(isturf(the_target) || QDELETED(the_target) || QDELETED(src) || the_target.z != src.z) // bail out on invalids and if the target is on a seperate Z level.
 		return FALSE
 
 	if(ismob(the_target)) //Target is in godmode, ignore it.
