@@ -220,6 +220,10 @@ GLOBAL_LIST_INIT(canvas_dimensions, init_canvas_dimensions())
 			palette_comp.colors.Cut(color_index, color_index+1)
 		if("finalize")
 			. = TRUE
+			if(isobserver(user)) // Ghosts cant finalize
+				return FALSE
+			if(istype(user, /mob/living/silicon) && !Adjacent(user, src)) // Silicons cant finalize unless adjacent
+				return FALSE
 			finalize(user)
 		if("patronage")
 			. = TRUE
